@@ -79,7 +79,8 @@ INSTALLED_APPS = [
     'core',
     'codelist',
     'buildings2',
-    'proyectodj'
+    'proyectodj',
+    'hidrografia_django'
 ]
 
 MIDDLEWARE = [

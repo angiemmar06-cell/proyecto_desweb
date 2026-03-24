@@ -42,6 +42,9 @@ def main():
         print("Error: Las funciones disponibles son: insert, select, selectone, selectall, update, delete")
         sys.exit(0)
 
+# select(d, asDict=False) → devuelve tuplas
+#select(d, asDict=True) → devuelve diccionarios
+
     #Tabla Cauces
     if tableName == "cauces":
         if functionName == "insert":
@@ -55,7 +58,10 @@ def main():
             }
             print(insert_cauces(d))
         elif functionName == "select":
+            # Tuplas
             print(select_cauces({'caudal_minimo': 1, 'caudal_maximo': 10}))
+            # Diccionarios
+            print(select_cauces({'caudal_minimo': 1, 'caudal_maximo': 10}, asDict=True))
         elif functionName == "selectall":
             print(selectall_cauces(asDict=True))
         elif functionName == "selectone":
