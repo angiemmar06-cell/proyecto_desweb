@@ -1,0 +1,84 @@
+#subcuencas - correcto
+d = {
+    'nombre': 'Sierra Calderona',
+    'codigo': 'SC011',
+    'area_km2': 198.5,
+    'perimetro_km': 62.4,
+    'uso_suelo': 'Forestal',
+    'geom': 'POLYGON((736000 4380000, 738000 4380000, 738000 4382000, 736000 4382000, 736000 4380000))'
+}
+
+
+#Subcuencas - Solapan
+
+d = {
+    'nombre': 'Subcuenca Invasora',
+    'codigo': 'SC999',
+    'area_km2': 100,
+    'perimetro_km': 40,
+    'uso_suelo': 'Urbano',
+    'geom': 'POLYGON((725000 4373000, 727000 4373000, 727000 4375000, 725000 4375000, 725000 4373000))'
+}
+
+#subcuenca - Geometria Invalida
+
+d = {
+    'nombre': 'Subcuenca Rota',
+    'codigo': 'SC998',
+    'area_km2': 50,
+    'perimetro_km': 30,
+    'uso_suelo': 'Mixto',
+    'geom': 'POLYGON((740000 4380000, 742000 4382000, 742000 4380000, 740000 4382000, 740000 4380000))'
+}
+
+#cauce - correcto
+
+d = {
+    'nombre': 'Barranco Sierra',
+    'tipo': 'barranco',
+    'longitud_km': 22.3,
+    'caudal_medio': 1.2,
+    'estado_ecologico': 'Bueno',
+    'geom': 'LINESTRING(736500 4380500, 737000 4381000, 737500 4381500)'
+}
+
+#cauces (línea que cruza al Río Turia)
+d = {
+    'nombre': 'Cauce test',
+    'tipo': 'barranco',
+    'longitud_km': 10,
+    'caudal_medio': 0.5,
+    'estado_ecologico': 'Deficiente',
+    'geom': 'LINESTRING(724000 4372500, 726000 4374000)'
+}
+
+#estaciones (punto fuera de subcuenca):
+d = {
+    'nombre': 'Estacion test',
+    'tipo': 'aforo',
+    'organismo': 'CHJ',
+    'estado': 'Activa',
+    'fecha_instalacion': '2025-01-01',
+    'geom': 'POINT(800000 4500000)'
+}
+
+#estaciones - correcto
+d = {
+    'nombre': 'Estacion Nueva',
+    'tipo': 'calidad',
+    'organismo': 'AEMET',
+    'estado': 'Activa',
+    'fecha_instalacion': '2025-03-01',
+    'geom': 'POINT(725500 4373500)'
+}
+
+#estaciones_monitoreo - correcto
+
+d = {
+    'nombre': 'Estacion Carraixet Sur',
+    'tipo': 'aforo',
+    'organismo': 'AEMET',
+    'estado': 'Activa',
+    'fecha_instalacion': '2024-06-15',
+    'geom': 'POINT(728000 4376000)'
+}

@@ -23,7 +23,7 @@ def update(d):
         conn.close()
         return {'ok': False, 'message': 'La geometría no es válida', 'data': None}
     
-    #verificar que no se solapan con otras subcuencas
+    #verificar que no se solapan
     query = """
         select id from d.cauces where ST_relate(
             geom,

@@ -54,12 +54,12 @@ def run(*args):
     elif tableName == "cauces":
         if functionName == "insert":
             print(c.insert({
-                'nombre': 'Río Turia',
-                'tipo': 'rio',
-                'longitud_km': 280.5,
-                'caudal_medio': 15.3,
-                'estado_ecologico': 'Bueno',
-                'geom': 'LINESTRING(720000 4372000, 722000 4373000, 724000 4373500, 726000 4374000)'
+                'nombre': 'Cauce Duplicado',
+                'tipo': 'barranco',
+                'longitud_km': 10,
+                'caudal_medio': 0.5,
+                'estado_ecologico': 'Deficiente',
+                'geom': 'LINESTRING(727500 4375500, 728000 4376000, 728500 4376500)'
             }))
         elif functionName == "selectall":
             print(c.selectall())
@@ -67,14 +67,14 @@ def run(*args):
             print(c.selectone({'id': 1}))
         elif functionName == "update":
             print(c.update({
-                'id': 1,
-                'nombre': 'Río Turia',
-                'tipo': 'rio',
-                'longitud_km': 280.5,
-                'caudal_medio': 15.3,
-                'estado_ecologico': 'Bueno',
-                'geom': 'LINESTRING(720000 4372000, 722000 4373000, 724000 4373500, 726000 4374000)'
-            }))
+                'id': 4,
+                'nombre': 'Rambla del Poyo',
+                'tipo': 'rambla',
+                'longitud_km': 38.7,
+                'caudal_medio': 1.8,
+                'estado_ecologico': 'Deficiente',
+                'geom': 'LINESTRING(724500 4373000, 725000 4373500, 725500 4373800)'
+            })) #ojo, geometria intersecta
         elif functionName == "delete":
             print(c.delete({'id': 1}))
 
@@ -112,4 +112,4 @@ def run(*args):
 #python manage.py runscript scripts.hidrografiadjango.main --script-args cauces insert
 #python manage.py runscript scripts.hidrografiadjango.main --script-args cauces selectall
 #python manage.py runscript scripts.hidrografiadjango.main --script-args estaciones_monitoreo insert
-#python manage.py runscript scripts.hidrografiadjango.main --script-args estaciones_monitoreo selectall
+#python manage.py runscript scripts.hidrografiadjango.main --script-args estaciones_monitoreo selectalls
