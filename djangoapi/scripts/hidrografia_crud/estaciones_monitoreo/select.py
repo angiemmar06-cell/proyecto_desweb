@@ -66,12 +66,12 @@ def selectall(asDict=False):
     conn.close()
     return {'ok': True, 'message': f"Todas las estaciones: {len(l)}", 'data': l}
 
-Prints
-print("--" * 15, "Select - por tipo", "--" * 15)
-print(select({'tipo': 'calidad'}))
+# Prints
+# print("--" * 15, "Select - por tipo", "--" * 15)
+# print(select({'tipo': 'calidad'}))
 
-print("--" * 10, "Selectall - TODAS", "--" * 10)
-print(selectall())
+# print("--" * 10, "Selectall - TODAS", "--" * 10)
+# print(selectall())
 
-print("--" * 10, "Selectone - una sola", "--" * 10)
-print(selectone({'id': 1}, asDict=True))
+# print("--" * 10, "Selectone - una sola", "--" * 10)
+# print(selectone({'id': 1}, asDict=True))
