@@ -38,4 +38,5 @@ urlpatterns = [
 
     path('codelist/', include('codelist.urls')),
     path('core/', include('core.urls')),
+    path('hidrografia/', include('hidrografia.urls'))
 ]
