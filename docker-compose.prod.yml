@@ -89,6 +89,7 @@ services:
 networks:
    postgis:
       driver: bridge
+      external: true
 #coment
 volumes:
   postgis-data:
