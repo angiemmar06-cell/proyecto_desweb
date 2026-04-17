@@ -38,5 +38,6 @@ urlpatterns = [
 
     path('codelist/', include('codelist.urls')),
     path('core/', include('core.urls')),
-    path('hidrografia/', include('hidrografia.urls'))
+    path('proyectodj/', include('proyectodj.urls')),
+    path('hidrografia_django/', include('hidrografia_django.urls'))
 ]
