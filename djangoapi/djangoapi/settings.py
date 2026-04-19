@@ -79,7 +79,6 @@ INSTALLED_APPS = [
     'core',
     'codelist',
     'buildings2',
-    'proyectodj',
     'hidrografia_django'
 ]
 

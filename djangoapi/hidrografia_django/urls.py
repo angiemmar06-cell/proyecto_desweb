@@ -6,5 +6,5 @@ from . import views
 
 urlpatterns = [
     path("hello_hidrografia/", views.HelloHidrografia.as_view(),name="hello_hidrografia"),
-    path("cauces/", views.Cauces.as_view(),name="cauces")
+    path("api/", views.Cauces.as_view(),name="cauces")
 ]
