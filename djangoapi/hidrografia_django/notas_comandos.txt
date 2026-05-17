@@ -1,0 +1,6 @@
+Navegador:
+
+django API: http://localhost:8001/hidrografia/cauces/
+django admin: http://localhost:8001/adcroemin/ (login: admin / admin) 
+pgadmin: http://localhost:5050/ 
+geoserver: http://localhost:8080/geoserver/web/  

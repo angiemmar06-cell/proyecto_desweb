@@ -9,11 +9,12 @@ from .models import Cauces, EstacionesMonitoreo, Subcuencas
 from core.myLib.geometryTools import WkbConversor, GeometryChecks
 
 
-# ============================================================
-#                          CAUCES
-# ============================================================
+
+#CAUCES
 class CaucesView(View):
-    # Tabla generada por Django: <app_label>_<modelo_lowercase>
+    # Tabla generada por Django: /guardamos la tabla en una variable 
+    # para usarla en las comprobaciones de geometría (ST_relate)
+    #la definimo para que este accesible desde cualquier método de la clase CaucesView.
     TABLE_NAME = 'hidrografia_django_cauces'
 
     def _serialize(self, cauce):
@@ -34,12 +35,12 @@ class CaucesView(View):
         if id:
             try:
                 cauce = Cauces.objects.get(id=id)
-                return JsonResponse({'ok': True, 'data': [self._serialize(cauce)]})
+                return JsonResponse({'ok': True, 'message': 'Cauce recuperado', 'data': [self._serialize(cauce)]})
             except Cauces.DoesNotExist:
                 return JsonResponse({'ok': False, 'message': 'Cauce no encontrado'}, status=404)
         # SELECT ALL
         cauces = Cauces.objects.all()
-        return JsonResponse({'ok': True, 'data': [self._serialize(c) for c in cauces]})
+        return JsonResponse({'ok': True, 'message': 'Cauces recuperados', 'data': [self._serialize(c) for c in cauces]})
 
     def post(self, request):
         # INSERT con comprobaciones: snap to grid + validez + no intersección
@@ -58,7 +59,7 @@ class CaucesView(View):
             conversor = WkbConversor()
             wkb = conversor.set_wkt_from_text(geom_input)
 
-            # 3. ¿La geometría es válida después del snap?
+            # 3. Para verificar que la geometría es válida
             gc = GeometryChecks(wkb)
             if not gc.is_geometry_valid():
                 return JsonResponse(
@@ -66,7 +67,7 @@ class CaucesView(View):
                     status=400
                 )
 
-            # 4. ¿Intersecta con algún otro cauce? (ST_relate con T********)
+            # 4. Verificar si hay intersecciones con otros cauces (ST_relate con T********)
             related = gc.check_st_relate(self.TABLE_NAME, 'T********')
             if gc.are_there_related_ids():
                 return JsonResponse(
@@ -74,7 +75,7 @@ class CaucesView(View):
                     status=400
                 )
 
-            # 5. Crear el cauce. NO pasamos:
+            # 5. Crear el cauce:
             #    - longitud_km: se calcula automático en Cauces.save()
             #    - data_creation: la pone la BD (db_default)
             cauce = Cauces.objects.create(
@@ -117,7 +118,7 @@ class CaucesView(View):
                         status=400
                     )
 
-                # OJO: id_to_avoid=id para no detectar al propio cauce como intersección
+                # id_to_avoid=id para no detectar al propio cauce como intersección
                 related = gc.check_st_relate(self.TABLE_NAME, 'T********', id_to_avoid=id)
                 if gc.are_there_related_ids():
                     return JsonResponse(
@@ -156,10 +157,7 @@ class CaucesView(View):
         except Cauces.DoesNotExist:
             return JsonResponse({'ok': False, 'message': 'Cauce no encontrado'}, status=404)
 
-
-# ============================================================
-#                  ESTACIONES DE MONITOREO
-# ============================================================
+# ESTACIONES DE MONITOREO
 class EstacionesMonitoreoView(View):
     TABLE_NAME = 'hidrografia_django_estacionesmonitoreo'
 
@@ -179,11 +177,11 @@ class EstacionesMonitoreoView(View):
         if id:
             try:
                 estacion = EstacionesMonitoreo.objects.get(id=id)
-                return JsonResponse({'ok': True, 'data': [self._serialize(estacion)]})
+                return JsonResponse({'ok': True, 'message': 'Estación de Monitoreo recuperada', 'data': [self._serialize(estacion)]})
             except EstacionesMonitoreo.DoesNotExist:
                 return JsonResponse({'ok': False, 'message': 'Estación de Monitoreo no encontrada'}, status=404)
         estaciones = EstacionesMonitoreo.objects.all()
-        return JsonResponse({'ok': True, 'data': [self._serialize(e) for e in estaciones]})
+        return JsonResponse({'ok': True, 'message': 'Estaciones de Monitoreo recuperadas', 'data': [self._serialize(e) for e in estaciones]})
 
     def post(self, request):
         try:
@@ -288,10 +286,7 @@ class EstacionesMonitoreoView(View):
         except EstacionesMonitoreo.DoesNotExist:
             return JsonResponse({'ok': False, 'message': 'Estación de Monitoreo no encontrada'}, status=404)
 
-
-# ============================================================
-#                        SUBCUENCAS
-# ============================================================
+#SUBCUENCAS
 class SubcuencasView(View):
     TABLE_NAME = 'hidrografia_django_subcuencas'
 
@@ -311,11 +306,11 @@ class SubcuencasView(View):
         if id:
             try:
                 subcuenca = Subcuencas.objects.get(id=id)
-                return JsonResponse({'ok': True, 'data': [self._serialize(subcuenca)]})
+                return JsonResponse({'ok': True, 'message': 'Subcuenca recuperada', 'data': [self._serialize(subcuenca)]})
             except Subcuencas.DoesNotExist:
                 return JsonResponse({'ok': False, 'message': 'Subcuenca no encontrada'}, status=404)
         subcuencas = Subcuencas.objects.all()
-        return JsonResponse({'ok': True, 'data': [self._serialize(s) for s in subcuencas]})
+        return JsonResponse({'ok': True, 'message': 'Subcuencas recuperadas', 'data': [self._serialize(s) for s in subcuencas]})
 
     def post(self, request):
         try:
