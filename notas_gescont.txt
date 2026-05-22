@@ -1,0 +1,17 @@
+sudo apt-get update --> lista nueva de software
+sudo apt-get upgrade --> descargar e instala nuevas versiones
+
+sudo shutdown 0 --> para detener todo OJO
+
+portainer:
+usuario: admin
+clave: portainer2026
+
+============================================Conexion tipo tunel ====================================================================
+ssh -L 3333:localhost:5000 martinez@geomaticaupv.es
+contraseña: curso2026
+
+https://geomaticaupv.es/pgadmin/browser/
+Con la del profe -- 
+
+ng build --> en attach shell
