@@ -53,6 +53,14 @@ else:
     # Si la variable no existe, asigna una lista vacía para seguridad
     ALLOWED_HOSTS = []
 
+# Origenes de confianza para CSRF (necesario detras de un proxy HTTPS,
+# por ejemplo para que funcione el login del sitio admin de Django)
+csrf_trusted_origins_str = os.getenv('DJANGO_CSRF_TRUSTED_ORIGINS')
+if csrf_trusted_origins_str:
+    CSRF_TRUSTED_ORIGINS = [o.strip() for o in csrf_trusted_origins_str.split(',')]
+elif WEB_URL:
+    CSRF_TRUSTED_ORIGINS = [WEB_URL]
+
 # Application definition
 
 INSTALLED_APPS = [
